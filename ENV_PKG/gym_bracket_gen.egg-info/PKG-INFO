@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: gym-bracket-gen
+Version: 0.0.3
+Summary: A simple stochastic OpenAI environment for training RL agents
+Home-page: https://t.me/ad3ph
+Download-URL: https://github.com/MartinThoma/banana-gym
+Author: Artem Golomolzin
+Author-email: avgolomolzin@yandex.ru
+Maintainer: Artem Golomolzin
+Maintainer-email: avgolomolzin@yandex.ru
+License: MIT
+Keywords: utility,reinforcement-learning,RL,openai-gym,openai-environment,artificial-intelligence
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development
+Classifier: Topic :: Utilities
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: gym>=0.2.3
+Requires-Dist: pandas
+Requires-Dist: cfg_load
