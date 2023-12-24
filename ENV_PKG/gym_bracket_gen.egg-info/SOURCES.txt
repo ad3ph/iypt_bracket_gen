@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+gym_bracket_gen/__init__.py
+gym_bracket_gen.egg-info/PKG-INFO
+gym_bracket_gen.egg-info/SOURCES.txt
+gym_bracket_gen.egg-info/dependency_links.txt
+gym_bracket_gen.egg-info/requires.txt
+gym_bracket_gen.egg-info/top_level.txt
+gym_bracket_gen/envs/__init__.py
+gym_bracket_gen/envs/nn_env.py
