@@ -1,7 +1,7 @@
+# Preinstall custom env on each run. Comment if necessary
 import os
-#os.system("cd ENV_PKG; pip install -e . ; cd ..")
+os.system("cd ENV_PKG; pip install -e . ; cd ..")
 import gym_bracket_gen
-
 import gymnasium as gym
 import torch
 import random
@@ -13,7 +13,7 @@ import numpy as np
 
 
 # Create and wrap the environment
-env = gym.make("InvertedPendulum-v4")
+env = gym.make("BracketGen-v1", render_mode='rgb_array')
 wrapped_env = gym.wrappers.RecordEpisodeStatistics(env, 50)  # Records episode-reward
 
 total_num_episodes = int(5e3)  # Total number of episodes
@@ -52,6 +52,12 @@ for seed in [1, 2, 3, 5, 8]:  # Fibonacci seeds
             #  - truncated: The episode duration reaches max number of timesteps
             #  - terminated: Any of the state space values is no longer finite.
             done = terminated or truncated
+            frame = np.array(wrapped_env.render())
+            # if done:
+                # frame = cv2.putText(frame, "done", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+            cv2.imshow('', frame)
+            cv2.waitKey(1)
+
 
         reward_over_episodes.append(wrapped_env.return_queue[-1])
         agent.update()
