@@ -19,15 +19,18 @@ _Parameters and recommended values: X, Y_
 
 ### Sleep-like rearrangement
 :triangular_flag_on_post: **Status**: in use
+
 Every Z repetitions of previous algorithm's cycle, T random permutations are additionally performed. This increases the probability of finding the global minimum of Fu, but increases the execution time.
 _Parameters and recommended values: Z, T_
 
 ## Teacher-trained neural network
 :triangular_flag_on_post: **Status**: not supported
+
 Training a neural network, convolutional or dense, on "before-after" dumps made in genetic optimizer work
 _Parameters and recommended values:_
 
 ## Dense NN reinforcement learning using REINFORCE algorithm (without training data)
 :triangular_flag_on_post: **Status**: in development
+
 The [OpenAI/Farama Gymnasium API](https://github.com/Farama-Foundation/Gymnasium.git) is used.
 _Parameters and recommended values:_
