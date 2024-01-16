@@ -16,14 +16,14 @@ CALIBRATION_COEFFICIENTS = dict(
 
 #These weights are real weights of importance for every criteria. In parts of 1
 WEIGHTS = dict(
-    meets=2,
+    meets=3,
     four_teams_total=3,
     first_roles=0.2,
     room_visits=0.1,
     consequent_fours=0.2
 )
 
-MAX_ITER = 1500
+MAX_ITER = 10000
 DO_SLEEP_REARRANGEMENT = False
 REARRANGEMENT_ENTROPY_INCREASE = 1 #... this many random swaps
 
@@ -246,8 +246,8 @@ def get_optimized_bracket(t, f):
 
         new_bracket.find_fu()
 
-        with open('log.txt', 'a') as loh:
-            loh.write(str(new_bracket.fu)+'\n')
+        #with open('log.txt', 'a') as loh:
+        #    loh.write(str(new_bracket.fu)+'\n')
 
         if new_bracket.fu < old_bracket.fu:
             dumper.write_x(old_bracket.as_list)

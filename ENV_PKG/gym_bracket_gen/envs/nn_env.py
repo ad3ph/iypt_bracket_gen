@@ -1,39 +1,21 @@
 import numpy as np
-
+import gymnasium as gym
 from gymnasium import utils
-from gymnasium.envs.mujoco import MujocoEnv
-from gymnasium.spaces import Box
+from gymnasium.spaces import Box, MultiBinary
+from typing import Optional
+import numpy as np
 
-
-DEFAULT_CAMERA_CONFIG = {
-    "trackbodyid": 0,
-    "distance": 5,
-}
-
-
-class BracketGen(MujocoEnv, utils.EzPickle):
+class BracketGen(gym.Env):
     """
     ## Description
 
-    This environment is the cartpole environment based on the work done by
-    Barto, Sutton, and Anderson in ["Neuronlike adaptive elements that can
-    solve difficult learning control problems"](https://ieeexplore.ieee.org/document/6313077),
-    just like in the classic environments but now powered by the Mujoco physics simulator -
-    allowing for more complex experiments (such as varying the effects of gravity).
-    This environment involves a cart that can moved linearly, with a pole fixed on it
-    at one end and having another end free. The cart can be pushed left or right, and the
-    goal is to balance the pole on the top of the cart by applying forces on the cart.
-
+    This environment is the environment storing a logic behind the brackets for IYPT.
+		
     ## Action Space
-    The agent take a 1-element vector for actions.
+    The agent should yield a 2-element vector for actions.
 
-    The action space is a continuous `(action)` in `[-3, 3]`, where `action` represents
-    the numerical force applied to the cart (with magnitude representing the amount of
-    force and sign representing the direction)
-
-    | Num | Action                    | Control Min | Control Max | Name (in corresponding XML file) | Joint | Unit      |
-    |-----|---------------------------|-------------|-------------|----------------------------------|-------|-----------|
-    | 0   | Force applied on the cart | -3          | 3           | slider                           | slide | Force (N) |
+    The action space is a discrete `(team 1, team 2)` each number in range `[1, N_teams]`, meaning the agent wants to
+    swap team 1 and team 2 places.
 
     ## Observation Space
 
@@ -97,22 +79,14 @@ class BracketGen(MujocoEnv, utils.EzPickle):
         "render_modes": [
             "human",
             "rgb_array",
-            "depth_array",
         ],
         "render_fps": 25,
     }
 
-    def __init__(self, **kwargs):
-        utils.EzPickle.__init__(self, **kwargs)
+    def __init__(self, n_teams, n_fights, render_mode: Optional[str] = None):
+        self.render_mode = render_mode
+        self.action_space = MultiBinary(n_teams)
         observation_space = Box(low=-np.inf, high=np.inf, shape=(4,), dtype=np.float64)
-        MujocoEnv.__init__(
-            self,
-            "inverted_pendulum.xml",
-            2,
-            observation_space=observation_space,
-            default_camera_config=DEFAULT_CAMERA_CONFIG,
-            **kwargs,
-        )
 
     def step(self, a):
         reward = 1.0
