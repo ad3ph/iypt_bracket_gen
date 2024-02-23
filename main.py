@@ -3,10 +3,18 @@ from progress.bar import IncrementalBar as Bar
 from io import StringIO
 import sys
 
+import argparse as ar
+par = ar.ArgumentParser()
+par.add_argument('n_teams', type=int)
+par.add_argument('n_fights', type=int)
+args = par.parse_args()
+
 ATTEMPTS = 100
 NBEST = 5
-TEAMS = 17
-FIGHTS = 4
+TEAMS = args.n_teams
+FIGHTS = args.n_fights
+
+print(f"performing {ATTEMPTS} attempts to optimize brackets for {TEAMS} teams and {FIGHTS} fights")
 
 progress_bar = Bar(max = ATTEMPTS)
 
